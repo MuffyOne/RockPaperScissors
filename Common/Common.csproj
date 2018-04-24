@@ -65,14 +65,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\GameType.cs" />
+    <Compile Include="Enums\MoveTypes.cs" />
     <Compile Include="Enums\PlayerType.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\RegionExtensions.cs" />
     <Compile Include="Interfaces\IGame.cs" />
     <Compile Include="Interfaces\IGameRules.cs" />
+    <Compile Include="Interfaces\IMove.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\Player.cs" />
+    <Compile Include="Interfaces\IBasePlayer.cs" />
     <Compile Include="Helpers\PlayerTypeBinder.cs" />
+    <Compile Include="PlayersImplementation\ComputerPlayer.cs" />
+    <Compile Include="PlayersImplementation\HumanPlayer.cs" />
+    <Compile Include="PlayersImplementation\TacticalPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\RegionNames.cs" />
   </ItemGroup>

@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Linq;
 using MainModule.Views;
+using RockPaperScissors.Common.PlayersImplementation;
 
 namespace MainModule.ViewModels
 {
@@ -62,7 +63,7 @@ namespace MainModule.ViewModels
             InitializeCommands();
             InitializePlayersTypes();
         }
-
+        #endregion
 
         /*The filters to select which type of player you want is created dynamically starting from the Enum list describing the 
          list of available player type, if you add a new type of player you don't have to update the view
@@ -98,19 +99,35 @@ namespace MainModule.ViewModels
 
         private void OnStartNewGameCommand()
         {
-            Player playerOne = new Player();
-            playerOne.PlayerName = PlayerOneName;
             PlayerTypeBinder binderPlOne = PlayerOnePlayerType.FirstOrDefault(i => i.IsChecked);
+            IPlayer playerOne = CreatePlayer(binderPlOne.PlayerType);
+            playerOne.PlayerName = PlayerOneName;
             playerOne.PlayerType = binderPlOne.PlayerType;
 
-            Player playerTwo = new Player();
-            playerTwo.PlayerName = PlayerTwoName;
             PlayerTypeBinder binderPlTwo = PlayerTwoPlayerType.FirstOrDefault(i => i.IsChecked);
+            IPlayer playerTwo = CreatePlayer(binderPlTwo.PlayerType);
+            playerTwo.PlayerName = PlayerTwoName;
             playerTwo.PlayerType = binderPlTwo.PlayerType;
 
             _game.SetPlayers(playerOne, playerTwo);
             MainRegion.NavigateTo(typeof(GameView));
         }
-        #endregion
+
+        private IPlayer CreatePlayer(PlayerType playerType)
+        {
+            switch (playerType)
+            {
+                case PlayerType.ComputerPlayer:
+                    return new ComputerPlayer();
+                case PlayerType.HumanPlayer:
+                    return new HumanPlayer();
+                case PlayerType.TacticalPlayer:
+                    return new TacticalPlayer();
+                default:
+                    throw new Exception("This player type has not been implemented");
+            }
+        }
+
+       
     }
 }

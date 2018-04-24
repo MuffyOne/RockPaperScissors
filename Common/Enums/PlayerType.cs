@@ -12,7 +12,9 @@ namespace RockPaperScissors.Common.Enums
 
         [Description("Computer Tactical Player")]
         TacticalPlayer = 3
+
+        //TODO: Add more player types in version 2.0
     }
 
-  
+
 }

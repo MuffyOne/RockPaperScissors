@@ -8,11 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -20,12 +17,29 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding PlayerOneName}" Grid.Column="0" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Text="{Binding PlayerOneType}" Grid.Column="1" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Text="{Binding PlayerOneScore}" Grid.Column="2" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
-
-        <TextBlock Text="{Binding PlayerTwoName}" Grid.Column="3" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Text="{Binding PlayerTwoType}" Grid.Column="4" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Text="{Binding PlayerTwoScore}" Grid.Column="5" Grid.Row="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0"  FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
+          <Run Text="{Binding PlayerOne.PlayerName, Mode=TwoWay}"/>
+          <Run FontSize="10" Text=" ("/>
+          <Run FontSize="10" Text="{Binding PlayerOne.PlayerType, Mode=TwoWay}"/>
+          <Run FontSize="10"  Text=") "/>  
+          <Run FontSize="15"  Text=" SCORE: "/>   
+          <Run FontWeight="Bold"  FontSize="15" Text="{Binding PlayerOne.Score, Mode=TwoWay}"/>
+        </TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="1"  FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
+          <Run Text="{Binding PlayerOne.PlayerName, Mode=TwoWay}"/>
+          <Run FontSize="10" Text=" ("/>
+          <Run FontSize="10" Text="{Binding PlayerOne.PlayerType, Mode=TwoWay}"/>
+          <Run FontSize="10"  Text=") "/>  
+          <Run FontSize="15"  Text=" SCORE: "/>   
+          <Run FontWeight="Bold"  FontSize="15" Text="{Binding PlayerOne.Score, Mode=TwoWay}"/>
+        </TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1"  FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
+          <Run Text="{Binding PlayerTwo.PlayerName, Mode=TwoWay}"/>
+          <Run FontSize="10" Text=" ("/>
+          <Run FontSize="10" Text="{Binding PlayerTwo.PlayerType, Mode=TwoWay}"/>
+          <Run FontSize="10"  Text=") "/>
+          <Run FontSize="15"  Text=" SCORE: "/>   
+          <Run FontWeight="Bold" FontSize="15"  Text="{Binding PlayerTwo.Score, Mode=TwoWay}"/>
+        </TextBlock>
     </Grid>
 </UserControl>

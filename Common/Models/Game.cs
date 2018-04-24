@@ -7,17 +7,17 @@ namespace RockPaperScissors.Models
     {
         #region fields
         //Make this a property and assign it at the beginning of a Match to change the match length
-        private int _numerberOfShifts = 3;
-        private Player _playerOne;
-        private Player _playerTwo;
+        public const int _numerberOfShifts = 3;
+        private IPlayer _playerOne;
+        private IPlayer _playerTwo;
         private int _shifts;
 
-        public Player GetPlayerOne()
+        public IPlayer GetPlayerOne()
         {
             return _playerOne;
         }
 
-        public Player GetPlayerTwo()
+        public IPlayer GetPlayerTwo()
         {
             return _playerTwo;
         }
@@ -31,7 +31,7 @@ namespace RockPaperScissors.Models
             _playerTwo = null;
         }
 
-        public void SetPlayers(Player playerOne, Player playerTwo)
+        public void SetPlayers(IPlayer playerOne, IPlayer playerTwo)
         {
             _playerOne = playerOne;
             _playerTwo = playerTwo;
