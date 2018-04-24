@@ -1,0 +1,39 @@
+﻿<Window x:Class="RockPaperScissors.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:commonResources="clr-namespace:RockPaperScissors.Common;assembly=RockPaperScissors.Common"
+        xmlns:local="clr-namespace:RockPaperScissors"
+        mc:Ignorable="d"
+        xmlns:prism="http://www.codeplex.com/prism"
+        Title="Rock Paper Scissors" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ItemsControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" VerticalAlignment="Stretch" x:Name="MainToolbar" 
+                          prism:RegionManager.RegionName="{x:Static commonResources:Resources.RegionNames.ToolBar}">
+            <ItemsControl.Background>
+                <LinearGradientBrush StartPoint="0.2, 0" EndPoint="2, 1" ColorInterpolationMode="SRgbLinearInterpolation">
+                    <GradientStop Color="#96af83" />
+                    <GradientStop Color="#2c5e06" Offset="1" />
+                </LinearGradientBrush>
+            </ItemsControl.Background>
+        </ItemsControl>
+        <UserControl x:Name="MainRegion" Grid.Row="1" Grid.RowSpan="2" Padding="0, 12, 12, 12" prism:RegionManager.RegionName="{x:Static commonResources:Resources.RegionNames.MainRegion}" Grid.Column="2" x:FieldModifier="public" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <UserControl.Background>
+                <LinearGradientBrush StartPoint="0.2, 0" EndPoint="0.8, 1" ColorInterpolationMode="SRgbLinearInterpolation">
+                    <GradientStop Color="WhiteSmoke" />
+                    <GradientStop Color="LightGray" Offset="1" />
+                </LinearGradientBrush>
+            </UserControl.Background>
+        </UserControl>
+    </Grid>
+</Window>
