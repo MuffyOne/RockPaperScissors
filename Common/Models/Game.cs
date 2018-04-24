@@ -5,16 +5,20 @@ namespace RockPaperScissors.Models
 {
     public class Game : IGame
     {
+        #region fields
         //Make this a property and assign it at the beginning of a Match to change the match length
-        private int NumerberOfShifts = 3;
-
+        private int _numerberOfShifts = 3;
         private Player _playerOne;
+        private Player _playerTwo;
+        private int _shifts;
+        #endregion
 
-        public Player _playerTwo;
 
         public void ResetGame()
         {
-            
+            _shifts = 0;
+            _playerOne = null;
+            _playerTwo = null;
         }
 
         public void SetPlayers(Player playerOne, Player playerTwo)
@@ -22,5 +26,7 @@ namespace RockPaperScissors.Models
             _playerOne = playerOne;
             _playerTwo = playerTwo;
         }
+
+
     }
 }

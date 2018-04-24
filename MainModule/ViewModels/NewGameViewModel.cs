@@ -10,6 +10,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Linq;
+using MainModule.Views;
 
 namespace MainModule.ViewModels
 {
@@ -25,7 +26,7 @@ namespace MainModule.ViewModels
         #endregion
 
         #region properties
-        ICommand StartNewGameCommand { get; set; }
+        public ICommand StartNewGameCommand { get; set; }
 
         private IRegion MainRegion { get { return _regionManager.Regions[RegionNames.MainRegion]; } }
         public ObservableCollection<PlayerTypeBinder> PlayerOnePlayerType
@@ -105,9 +106,10 @@ namespace MainModule.ViewModels
             Player playerTwo = new Player();
             playerTwo.PlayerName = PlayerTwoName;
             PlayerTypeBinder binderPlTwo = PlayerTwoPlayerType.FirstOrDefault(i => i.IsChecked);
-            playerOne.PlayerType = binderPlTwo.PlayerType;
+            playerTwo.PlayerType = binderPlTwo.PlayerType;
 
             _game.SetPlayers(playerOne, playerTwo);
+            MainRegion.NavigateTo(typeof(GameView));
         }
         #endregion
     }

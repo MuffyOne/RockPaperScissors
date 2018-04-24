@@ -55,6 +55,6 @@
         <TextBox x:Name="PlayerTwoName" Grid.Row="1" Grid.Column="4" Text="{Binding PlayerTwoName}" Width="150" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
 
 
-        <Button x:Name="NewGameButton" Grid.Row="3" Grid.Column="2" Command="{Binding StartNewGameCommand}" Content="Start!" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15" Padding="5"></Button>
+        <Button x:Name="NewGameButton" Grid.Row="3" Grid.Column="2" Command="{Binding StartNewGameCommand}" Content="Start!" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15" Padding="5"></Button>
     </Grid>
 </UserControl>

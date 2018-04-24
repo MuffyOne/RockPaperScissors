@@ -3,11 +3,7 @@ using Prism.Commands;
 using Prism.Regions;
 using RockPaperScissors.Common.Helpers;
 using RockPaperScissors.Common.Resources;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ToolBar
@@ -19,7 +15,7 @@ namespace ToolBar
         #endregion
 
         #region properties
-        ICommand NewGameCommand { get; set; }
+        public ICommand NewGameCommand { get; set; }
 
         private IRegion MainRegion { get { return _regionManager.Regions[RegionNames.MainRegion]; } }
         #endregion

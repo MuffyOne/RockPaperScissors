@@ -21,6 +21,7 @@ namespace MainModule
         public void Initialize()
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(NewGameView));
+            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(GameView));
         }
     }
 }
