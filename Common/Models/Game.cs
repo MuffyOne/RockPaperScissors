@@ -11,6 +11,16 @@ namespace RockPaperScissors.Models
         private Player _playerOne;
         private Player _playerTwo;
         private int _shifts;
+
+        public Player GetPlayerOne()
+        {
+            return _playerOne;
+        }
+
+        public Player GetPlayerTwo()
+        {
+            return _playerTwo;
+        }
         #endregion
 
 
