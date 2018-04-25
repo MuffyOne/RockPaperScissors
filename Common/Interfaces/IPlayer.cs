@@ -1,10 +1,12 @@
 ﻿using RockPaperScissors.Common.Enums;
-using RockPaperScissors.Common.Models;
 
 namespace RockPaperScissors.Common.Interfaces
 {
-    public interface IPlayer : IBasePlayer
+    public interface IPlayer 
     {
-        RockPaperScissorsMoves GetNextMove();
+        int GetNextMove(IRules ruleSet);
+        PlayerType PlayerType { get; set; }
+        string PlayerName { get; set; }
+        int Score { get; set; }
     }
 }

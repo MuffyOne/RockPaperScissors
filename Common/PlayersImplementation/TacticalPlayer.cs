@@ -11,7 +11,7 @@ namespace RockPaperScissors.Common.PlayersImplementation
 {
     public class TacticalPlayer : IPlayer
     {
-        private RockPaperScissorsMoves? _lastMove;
+        private int? _lastMove;
 
         #region constructor
         public TacticalPlayer()
@@ -19,47 +19,29 @@ namespace RockPaperScissors.Common.PlayersImplementation
 
         }
 
-        public TacticalPlayer(RockPaperScissorsMoves lastMoveByPass)
+        public TacticalPlayer(int lastMoveByPass)
         {
             _lastMove = lastMoveByPass;
         }
 
         public PlayerType PlayerType { get; set; }
-        public string PlayerName { get; set ; }
+        public string PlayerName { get; set; }
         public int Score { get; set; }
         #endregion
 
-        public RockPaperScissorsMoves GetNextMove()
+        public int GetNextMove(IRules rulesSet)
         {
-           if(_lastMove == null)
+            if (_lastMove == null)
             {
-                var move = GetRandomMove();
+                var move = rulesSet.GetRandomMove();
                 _lastMove = move;
                 return move;
             }
-           else
+            else
             {
-                switch(_lastMove)
-                {
-                    case RockPaperScissorsMoves.Rock:
-                        return RockPaperScissorsMoves.Paper;
-                    case RockPaperScissorsMoves.Paper:
-                        return RockPaperScissorsMoves.Scissors;
-                    case RockPaperScissorsMoves.Scissors:
-                        return RockPaperScissorsMoves.Rock;
-                    default:
-                        throw new Exception("Unknown last move!");
-                }
+                return rulesSet.GetNextWinningMove(_lastMove);
             }
 
-        }
-
-        private RockPaperScissorsMoves GetRandomMove()
-        {
-            var values = Enum.GetValues(typeof(RockPaperScissorsMoves));
-            Random random = new Random();
-            RockPaperScissorsMoves randomMove = (RockPaperScissorsMoves)values.GetValue(random.Next(values.Length));
-            return randomMove;
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Linq;
 using MainModule.Views;
 using RockPaperScissors.Common.PlayersImplementation;
+using RockPaperScissors.Common.Rules;
 
 namespace MainModule.ViewModels
 {
@@ -109,7 +110,9 @@ namespace MainModule.ViewModels
             playerTwo.PlayerName = PlayerTwoName;
             playerTwo.PlayerType = binderPlTwo.PlayerType;
 
-            _game.SetPlayers(playerOne, playerTwo);
+            _game.PlayerOne = playerOne;
+            _game.PlayerTwo = playerTwo;
+            _game.Rules = new RockPaperScissorsRules();
             MainRegion.NavigateTo(typeof(GameView));
         }
 

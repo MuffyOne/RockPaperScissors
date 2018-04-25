@@ -53,8 +53,8 @@ namespace MainModule.ViewModels
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
             _game = _unityContainer.Resolve<IGame>();
-            PlayerOne = _game.GetPlayerOne();
-            PlayerTwo = _game.GetPlayerTwo();
+            PlayerOne = _game.PlayerOne;
+            PlayerTwo = _game.PlayerTwo;
            
         }
         

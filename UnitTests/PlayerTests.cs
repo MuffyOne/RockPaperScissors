@@ -2,21 +2,23 @@
 using RockPaperScissors.Common.Enums;
 using RockPaperScissors.Common.Interfaces;
 using RockPaperScissors.Common.PlayersImplementation;
+using RockPaperScissors.Common.Rules;
 
 namespace UnitTests
 {
     public class PlayerTests
     {
-        [TestCase(RockPaperScissorsMoves.Rock, RockPaperScissorsMoves.Paper)]
-        [TestCase(RockPaperScissorsMoves.Paper, RockPaperScissorsMoves.Scissors)]
-        [TestCase(RockPaperScissorsMoves.Scissors, RockPaperScissorsMoves.Rock)]
-        public void TacticalPlayer_GetNextMove_NextMoveIsCorrect(RockPaperScissorsMoves lastMove, RockPaperScissorsMoves expectedMove)
+        [TestCase(1, 2)]
+        [TestCase(2, 3)]
+        [TestCase(3, 1)]
+        public void TacticalPlayer_GetNextMove_NextMoveIsCorrect(int lastMove, int expectedMove)
         {
             //ARRANGE
+            IRules rules = new RockPaperScissorsRules();
             IPlayer player = new TacticalPlayer(lastMove);
 
             //ACT
-            RockPaperScissorsMoves nextMove = player.GetNextMove();
+            int nextMove = player.GetNextMove(rules);
 
             //ASSERT
             Assert.AreEqual(expectedMove, nextMove);

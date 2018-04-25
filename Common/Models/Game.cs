@@ -1,5 +1,4 @@
 ﻿using RockPaperScissors.Common.Interfaces;
-using RockPaperScissors.Common.Models;
 
 namespace RockPaperScissors.Models
 {
@@ -7,22 +6,18 @@ namespace RockPaperScissors.Models
     {
         #region fields
         //Make this a property and assign it at the beginning of a Match to change the match length
-        public const int _numerberOfShifts = 3;
+        public const int _numerberOfTurns = 3;
         private IPlayer _playerOne;
         private IPlayer _playerTwo;
+        private IRules _rules;
         private int _shifts;
-
-        public IPlayer GetPlayerOne()
-        {
-            return _playerOne;
-        }
-
-        public IPlayer GetPlayerTwo()
-        {
-            return _playerTwo;
-        }
         #endregion
 
+        #region properties
+        public IPlayer PlayerOne { get; set; }
+        public IPlayer PlayerTwo { get; set; }
+        public IRules Rules { get; set; }
+        #endregion
 
         public void ResetGame()
         {
@@ -30,13 +25,6 @@ namespace RockPaperScissors.Models
             _playerOne = null;
             _playerTwo = null;
         }
-
-        public void SetPlayers(IPlayer playerOne, IPlayer playerTwo)
-        {
-            _playerOne = playerOne;
-            _playerTwo = playerTwo;
-        }
-
-
     }
+
 }

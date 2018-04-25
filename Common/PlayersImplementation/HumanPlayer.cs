@@ -9,9 +9,10 @@ namespace RockPaperScissors.Common.PlayersImplementation
         public string PlayerName { get; set; }
         public int Score { get; set; }
 
-        public RockPaperScissorsMoves GetNextMove()
+       
+        public int GetNextMove(IRules ruleSet)
         {
-            return RockPaperScissorsMoves.Paper;
+            return 1;
         }
     }
 }
