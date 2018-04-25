@@ -7,6 +7,5 @@ namespace RockPaperScissors.Common.Interfaces
         int GetNextMove(IRules ruleSet);
         PlayerType PlayerType { get; set; }
         string PlayerName { get; set; }
-        int Score { get; set; }
     }
 }

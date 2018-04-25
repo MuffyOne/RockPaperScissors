@@ -109,7 +109,7 @@ namespace MainModule.ViewModels
             IPlayer playerTwo = CreatePlayer(binderPlTwo.PlayerType);
             playerTwo.PlayerName = PlayerTwoName;
             playerTwo.PlayerType = binderPlTwo.PlayerType;
-
+            _game.NumerberOfTurns = 3;
             _game.PlayerOne = playerOne;
             _game.PlayerTwo = playerTwo;
             _game.Rules = new RockPaperScissorsRules();
@@ -131,6 +131,6 @@ namespace MainModule.ViewModels
             }
         }
 
-       
+
     }
 }

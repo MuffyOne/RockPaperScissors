@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using RockPaperScissors.Common.Enums;
 using RockPaperScissors.Common.Interfaces;
 using RockPaperScissors.Common.PlayersImplementation;
 using RockPaperScissors.Common.Rules;
@@ -22,6 +21,21 @@ namespace UnitTests
 
             //ASSERT
             Assert.AreEqual(expectedMove, nextMove);
+        }
+
+        [Test]
+        [Repeat(10)]
+        public void ComputerPlayer_GetNextMove_NextMoveIsInsidePossibleMoves()
+        {
+            //ARRANGE
+            IRules rules = new RockPaperScissorsRules();
+            IPlayer player = new ComputerPlayer();
+
+            //ACT
+            int nextMove = player.GetNextMove(rules);
+
+            //ASSERT
+            Assert.That(nextMove, Is.InRange(1, 3));
         }
     }
 }

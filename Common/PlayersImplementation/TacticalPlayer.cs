@@ -26,22 +26,22 @@ namespace RockPaperScissors.Common.PlayersImplementation
 
         public PlayerType PlayerType { get; set; }
         public string PlayerName { get; set; }
-        public int Score { get; set; }
         #endregion
 
         public int GetNextMove(IRules rulesSet)
         {
+            int move = -1;
             if (_lastMove == null)
             {
-                var move = rulesSet.GetRandomMove();
-                _lastMove = move;
-                return move;
+                 move = rulesSet.GetRandomMove();
+                
             }
             else
             {
-                return rulesSet.GetNextWinningMove(_lastMove);
+               move = rulesSet.GetNextWinningMove(_lastMove);
             }
-
+            _lastMove = move;
+            return move;
         }
     }
 }

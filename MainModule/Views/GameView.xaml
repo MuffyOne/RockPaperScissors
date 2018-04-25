@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MainModule.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="900" d:DesignWidth="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,31 +15,68 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0"  FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
-          <Run Text="{Binding PlayerOne.PlayerName, Mode=TwoWay}"/>
-          <Run FontSize="10" Text=" ("/>
-          <Run FontSize="10" Text="{Binding PlayerOne.PlayerType, Mode=TwoWay}"/>
-          <Run FontSize="10"  Text=") "/>  
-          <Run FontSize="15"  Text=" SCORE: "/>   
-          <Run FontWeight="Bold"  FontSize="15" Text="{Binding PlayerOne.Score, Mode=TwoWay}"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
+          <Run FontSize="20" Text="Best of "/>
+          <Run FontSize="20" Text="{Binding Path=NumerberOfTurns, Mode=TwoWay}"/>
+          <Run FontSize="20" Text=" Current turn: "/>
+          <Run FontSize="20"  Text="{Binding CurrentTurn, Mode=TwoWay}" />  
         </TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="1"  FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
+        <TextBlock Grid.Column="0" Grid.Row="1"  FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
           <Run Text="{Binding PlayerOne.PlayerName, Mode=TwoWay}"/>
-          <Run FontSize="10" Text=" ("/>
-          <Run FontSize="10" Text="{Binding PlayerOne.PlayerType, Mode=TwoWay}"/>
-          <Run FontSize="10"  Text=") "/>  
-          <Run FontSize="15"  Text=" SCORE: "/>   
-          <Run FontWeight="Bold"  FontSize="15" Text="{Binding PlayerOne.Score, Mode=TwoWay}"/>
+          <Run FontSize="15" Text=" ("/>
+          <Run FontSize="15" Text="{Binding PlayerOne.PlayerType, Mode=TwoWay}"/>
+          <Run FontSize="15"  Text=") "/>  
+          <Run FontSize="20"  Text=" SCORE: "/>   
+          <Run FontWeight="Bold"  FontSize="25" Text="{Binding Path=PlayerOneScore, Mode=TwoWay}"/>
         </TextBlock>
-        <TextBlock Grid.Column="1" Grid.Row="1"  FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
+        <TextBlock Grid.Column="1" Grid.Row="1"  FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
           <Run Text="{Binding PlayerTwo.PlayerName, Mode=TwoWay}"/>
-          <Run FontSize="10" Text=" ("/>
-          <Run FontSize="10" Text="{Binding PlayerTwo.PlayerType, Mode=TwoWay}"/>
-          <Run FontSize="10"  Text=") "/>
-          <Run FontSize="15"  Text=" SCORE: "/>   
-          <Run FontWeight="Bold" FontSize="15"  Text="{Binding PlayerTwo.Score, Mode=TwoWay}"/>
+          <Run FontSize="15" Text=" ("/>
+          <Run FontSize="15" Text="{Binding PlayerTwo.PlayerType, Mode=TwoWay}"/>
+          <Run FontSize="15"  Text=") "/>
+          <Run FontSize="20"  Text=" SCORE: "/>   
+          <Run FontWeight="Bold" FontSize="25"  Text="{Binding Path=PlayerTwoScore, Mode=TwoWay}"/>
         </TextBlock>
+        <ListView Name="PlayerOneChoice" ItemsSource="{Binding Path=Moves}" Grid.Row="2" Grid.Column="0" Margin="5" 
+                  Background="Transparent" BorderBrush="Transparent"
+                  Visibility="{Binding PlayerOneHumanChoiceVisibility}"
+                  HorizontalContentAlignment="Center"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Background="Transparent" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button  Content="{Binding Path=Description}" Command="{Binding Path=DataContext.PlayerOneMakesChoiceCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType=ListView}}" CommandParameter="{Binding Path=RuleValue}" Margin="5" Background="Transparent" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Name="PlayerTwoChoice" ItemsSource="{Binding Path=Moves}" Grid.Row="2" Grid.Column="1" Margin="5" 
+                  Background="Transparent" BorderBrush="Transparent"
+                  Visibility="{Binding PlayerTwoHumanChoiceVisibility}"
+                  HorizontalContentAlignment="Center"
+                  HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" Background="Transparent"  />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Button  Content="{Binding Path=Description}" Command="{Binding Path=DataContext.PlayerTwoMakesChoiceCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType=ListView}}" CommandParameter="{Binding Path=RuleValue}" Margin="5" Background="Transparent" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <TextBlock Text="{Binding PlayerOneChoice}" Grid.Column="0" Grid.Row="3" FontFamily="Segoe UI" FontSize="30" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="{Binding PlayerTwoChoice}" Grid.Column="1" Grid.Row="3" FontFamily="Segoe UI" FontSize="30" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="{Binding InGameMessage}" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" FontFamily="Segoe UI" FontSize="25" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center"></TextBlock>
+        <TextBlock Text="{Binding CountDownMessage}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" FontFamily="Segoe UI" FontSize="25" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center"></TextBlock>
     </Grid>
 </UserControl>

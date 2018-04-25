@@ -10,5 +10,9 @@
 
         IRules Rules { get; set; }
 
+        int NumerberOfTurns { get; set; }
+
+        int GetGameWinner(int playerOneScore, int playerTwoScore);
+
     }
 }

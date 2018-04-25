@@ -7,19 +7,28 @@ namespace RockPaperScissors.Common.Rules
 {
     public class RockPaperScissorsRules : IRules
     {
-        private Random _random;
-        public List<RuleModel> rulesList;
+        private static readonly Random _random;
+        static RockPaperScissorsRules()
+        {
+            _random = new Random();
+        }
+
+
+        public List<MoveModel> MoveList
+        {
+            get
+            {
+                return new List<MoveModel>
+                {
+                new MoveModel { Description = "Rock", RuleValue = 1 },
+                new MoveModel { Description = "Paper", RuleValue = 2 },
+                new MoveModel { Description = "Scissor", RuleValue = 3 }
+                };
+            }
+        }
 
         public RockPaperScissorsRules()
         {
-
-            _random = new Random();
-            rulesList = new List<RuleModel>
-            {
-                new RuleModel { Description = "Rock", RuleValue = 1 },
-                new RuleModel { Description = "Paper", RuleValue = 2 },
-                new RuleModel { Description = "Scissor", RuleValue = 3 }
-            };
         }
 
         public int GetWinningMove(int playerOneMove, int playerTwoMove)
@@ -29,12 +38,12 @@ namespace RockPaperScissors.Common.Rules
                 return 0;
             }
             else if ((playerOneMove == 1) && (playerTwoMove == 3) ||
-              (playerOneMove == 2) && (playerTwoMove ==1) ||
+              (playerOneMove == 2) && (playerTwoMove == 1) ||
               (playerOneMove == 3) && (playerTwoMove == 2))
             {
                 return 1;
             }
-            return -1;
+            return 2;
         }
 
         public int GetNextWinningMove(int? lastMove)
@@ -54,8 +63,8 @@ namespace RockPaperScissors.Common.Rules
 
         public int GetRandomMove()
         {
-            
-            return _random.Next(rulesList.Count);
+            var random = _random.Next(MoveList.Count);
+            return random + 1;
         }
     }
 }

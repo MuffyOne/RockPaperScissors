@@ -75,7 +75,7 @@
     <Compile Include="Interfaces\IRules.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Helpers\PlayerTypeBinder.cs" />
-    <Compile Include="Models\RuleModel.cs" />
+    <Compile Include="Models\MoveModel.cs" />
     <Compile Include="PlayersImplementation\ComputerPlayer.cs" />
     <Compile Include="PlayersImplementation\HumanPlayer.cs" />
     <Compile Include="PlayersImplementation\TacticalPlayer.cs" />

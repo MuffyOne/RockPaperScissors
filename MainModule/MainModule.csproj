@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainModuleModule.cs" />
+    <Compile Include="SimpleAsyncCommandWithParameter.cs" />
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\NewGameViewModel.cs" />
     <Compile Include="Views\GameView.xaml.cs">
