@@ -33,7 +33,7 @@ namespace ToolBar
         }
 
         private void OnNewGameCommand()
-        {
+        {            
             if (MainRegion.ActiveViews.FirstOrDefault() is NewGameView)
             {
                 return;

@@ -5,6 +5,7 @@ using RockPaperScissors.Common.Interfaces;
 using RockPaperScissors.Common.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -22,7 +23,7 @@ namespace MainModule.ViewModels
         private string _inGameMessage;
         private string _playerOneChoice;
         private string _playerTwoChoice;
-        private string _countDownMessage;  
+        private string _countDownMessage;
         private ObservableCollection<MoveModel> _moves;
         private int? _nextPlayerOneMove;
         private int? _nextPlayerTwoMove;
@@ -31,8 +32,9 @@ namespace MainModule.ViewModels
         private int _playerOneScore;
         private int _playerTwoScore;
         private string _numerberOfTurns;
+        private CancellationTokenSource _tokenSource;
+        private CancellationToken _cancellationToken;
         #endregion
-
 
         #region properties
         public IPlayer PlayerOne
@@ -75,7 +77,7 @@ namespace MainModule.ViewModels
         {
             get { return _playerOneScore; }
             set { SetProperty(ref _playerOneScore, value); }
-            
+
         }
 
         public int PlayerTwoScore
@@ -120,11 +122,12 @@ namespace MainModule.ViewModels
             get { return _numerberOfTurns; }
             set { SetProperty(ref _numerberOfTurns, value); }
         }
+
         #endregion
 
         #region Commands and handlers
-        public ICommand PlayerOneMakesChoiceCommand {get; set;}
-        public ICommand PlayerTwoMakesChoiceCommand {get; set;}
+        public ICommand PlayerOneMakesChoiceCommand { get; set; }
+        public ICommand PlayerTwoMakesChoiceCommand { get; set; }
 
         private void PreExecute()
         {
@@ -151,6 +154,7 @@ namespace MainModule.ViewModels
         }
         private async Task PlayerTwoMakesChoice(object arg)
         {
+
             PlayerTwoHumanChoiceVisibility = Visibility.Hidden;
             _nextPlayerTwoMove = (int)arg;
             if (PlayerOne.PlayerType != RockPaperScissors.Common.Enums.PlayerType.HumanPlayer
@@ -162,6 +166,10 @@ namespace MainModule.ViewModels
 
         private async Task PlayCurrentRound()
         {
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
             if (PlayerOne.PlayerType != RockPaperScissors.Common.Enums.PlayerType.HumanPlayer)
             {
                 _nextPlayerOneMove = PlayerOne.GetNextMove(Game.Rules);
@@ -178,18 +186,22 @@ namespace MainModule.ViewModels
             string nextPlayerTwoMoveDescription = move.Description;
 
             await TurnCountDown();
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
             PlayerOneChoice = nextPlayerOneMoveDescription;
             PlayerTwoChoice = nextPlayerTwoMoveDescription;
             DisplayWinningMove(_nextPlayerOneMove.Value, _nextPlayerTwoMove.Value);
-            
+
             await DecideNextAction();
+
         }
         #endregion
 
         #region constructor
-        public GameViewModel(IUnityContainer unityContainer, IGame game)
+        public GameViewModel(IUnityContainer unityContainer)
         {
-            _game = game;
             PlayerOneHumanChoiceVisibility = Visibility.Hidden;
             PlayerTwoHumanChoiceVisibility = Visibility.Hidden;
             _unityContainer = unityContainer;
@@ -197,8 +209,10 @@ namespace MainModule.ViewModels
             PlayerTwoMakesChoiceCommand = new SimpleAsyncCommandWithParameter(PreExecute, PlayerTwoMakesChoice, PostExecute);
 
         }
+
         #endregion
 
+        #region navigation
         public bool IsNavigationTarget(NavigationContext navigationContext)
         {
             return true;
@@ -206,11 +220,7 @@ namespace MainModule.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            InGameMessage = "";
-            PlayerOneChoice = "";
-            PlayerTwoChoice = "";
-            PlayerOneHumanChoiceVisibility = Visibility.Hidden;
-            PlayerTwoHumanChoiceVisibility = Visibility.Hidden;
+            _tokenSource.Cancel();
         }
 
         public async void OnNavigatedTo(NavigationContext navigationContext)
@@ -220,11 +230,21 @@ namespace MainModule.ViewModels
             PlayerTwo = Game.PlayerTwo;
             Moves = new ObservableCollection<MoveModel>(Game.Rules.MoveList);
             NumerberOfTurns = Game.NumerberOfTurns.ToString();
+            _tokenSource = new CancellationTokenSource();
+
+            _cancellationToken = _tokenSource.Token;
             await SetUpGame();
         }
+        #endregion
 
+        #region methods
         private async Task SetUpGame()
         {
+            InGameMessage = "";
+            PlayerOneChoice = "";
+            PlayerTwoChoice = "";
+            PlayerOneHumanChoiceVisibility = Visibility.Hidden;
+            PlayerTwoHumanChoiceVisibility = Visibility.Hidden;
             PlayerOneScore = 0;
             PlayerTwoScore = 0;
             CurrentTurn = 0;
@@ -233,10 +253,15 @@ namespace MainModule.ViewModels
 
         private async Task NextRound()
         {
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
+
             CurrentTurn++;
             _nextPlayerOneMove = null;
             _nextPlayerTwoMove = null;
-            if(_playerOne.PlayerType == RockPaperScissors.Common.Enums.PlayerType.HumanPlayer)
+            if (_playerOne.PlayerType == RockPaperScissors.Common.Enums.PlayerType.HumanPlayer)
             {
                 PlayerOneHumanChoiceVisibility = Visibility.Visible;
             }
@@ -250,9 +275,13 @@ namespace MainModule.ViewModels
             }
         }
 
-       
+
         private async Task DecideNextAction()
         {
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
             var winner = Game.GetGameWinner(PlayerOneScore, PlayerTwoScore);
             if (winner == -1)
             {
@@ -271,21 +300,33 @@ namespace MainModule.ViewModels
                 }
             }
         }
-        
+
         private async Task TurnCountDown()
         {
             int i = 3;
             while (i != 0)
             {
                 CountDownMessage = "Next turn in " + i;
-                await Task.Delay(1000);
+                try
+                {
+                    await Task.Delay(1000, _cancellationToken);
+                }
+                catch (TaskCanceledException)
+                {
+                    return;
+                }
                 i--;
             }
             CountDownMessage = "";
         }
 
+
         private void DisplayWinningMove(int nextPlayerOneMove, int nextPlayerTwoMove)
         {
+            if (_cancellationToken.IsCancellationRequested)
+            {
+                return;
+            }
             var winningMove = Game.Rules.GetWinningMove(nextPlayerOneMove, nextPlayerTwoMove);
             switch (winningMove)
             {
@@ -313,5 +354,7 @@ namespace MainModule.ViewModels
 
             }
         }
+
+        #endregion
     }
 }

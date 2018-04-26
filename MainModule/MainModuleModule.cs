@@ -1,4 +1,5 @@
-﻿using MainModule.Views;
+﻿using MainModule.ViewModels;
+using MainModule.Views;
 using Microsoft.Practices.Unity;
 using Prism.Modularity;
 using Prism.Regions;
@@ -22,6 +23,7 @@ namespace MainModule
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(NewGameView));
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(GameView));
+            _unityContainer.RegisterType<GameViewModel>(new ContainerControlledLifetimeManager());
         }
     }
 }
