@@ -283,6 +283,8 @@ namespace MainModule.ViewModels
             {
                 return;
             }
+            await ClearScoreBoard(2000);
+          
             var winner = Game.GetGameWinner(PlayerOneScore, PlayerTwoScore, CurrentTurn);
             if (winner == -1)
             {
@@ -321,6 +323,22 @@ namespace MainModule.ViewModels
             CountDownMessage = "";
         }
 
+        private async Task ClearScoreBoard(int milliseconds)
+        {
+            try
+            {
+                await Task.Delay(milliseconds, _cancellationToken);
+                InGameMessage = "";
+                PlayerOneChoice = "";
+                PlayerTwoChoice = "";
+
+            }
+            catch (TaskCanceledException)
+            {
+                return;
+            }
+        }
+
 
         private void DisplayWinningMove(int nextPlayerOneMove, int nextPlayerTwoMove)
         {
@@ -352,6 +370,7 @@ namespace MainModule.ViewModels
                     break;
 
             }
+
         }
 
         #endregion

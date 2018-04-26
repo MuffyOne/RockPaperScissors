@@ -11,7 +11,8 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Text="ROCK PAPER SCISSORS" Grid.Column="0" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
-        <Button x:Name="NewGameButton" Grid.Column="1" Command="{Binding NewGameCommand}" Content="NEW GAME" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15" Padding="5"></Button>
-    </Grid>
-    
+        <Button x:Name="NewGameButton" Grid.Column="1" Command="{Binding NewGameCommand}" Content="NEW GAME" 
+                VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15" Padding="5"
+                FontWeight="Bold"/>
+    </Grid>    
 </UserControl>

@@ -49,10 +49,10 @@ namespace UnitTests
             IPlayer player = MockRepository.GenerateStub<HumanPlayer>();
 
             //ACT
-            TestDelegate testAction = () =>
+            void testAction()
             {
                 player.GetNextMove(rules);
-            };
+            }
 
             //ASSERT
             Exception ex = Assert.Throws<Exception>(testAction);

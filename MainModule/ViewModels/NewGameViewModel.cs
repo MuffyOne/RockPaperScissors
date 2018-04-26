@@ -78,18 +78,22 @@ namespace MainModule.ViewModels
             PlayerTwoPlayerType = new ObservableCollection<PlayerTypeBinder>();
             foreach (PlayerType playerType in Enum.GetValues(typeof(PlayerType)))
             {
-                PlayerTypeBinder playerOneTypeBinder = new PlayerTypeBinder();
-                playerOneTypeBinder.PlayerType = playerType;
-                playerOneTypeBinder.Group = guidPlayerOne;
-               playerOneTypeBinder.IsChecked = playerType == PlayerType.HumanPlayer ? true : false;
-                playerOneTypeBinder.Description = EnumHelper.GetEnumDescription(playerType);
+                PlayerTypeBinder playerOneTypeBinder = new PlayerTypeBinder
+                {
+                    PlayerType = playerType,
+                    Group = guidPlayerOne,
+                    IsChecked = playerType == PlayerType.HumanPlayer ? true : false,
+                    Description = EnumHelper.GetEnumDescription(playerType)
+                };
                 PlayerOnePlayerType.Add(playerOneTypeBinder);
 
-                PlayerTypeBinder playerTwoTypeBinder = new PlayerTypeBinder();
-                playerTwoTypeBinder.PlayerType = playerType;
-                playerTwoTypeBinder.Group = guidPlayerTwo;
-                playerTwoTypeBinder.IsChecked = playerType == PlayerType.ComputerPlayer ? true : false;
-                playerTwoTypeBinder.Description = EnumHelper.GetEnumDescription(playerType);
+                PlayerTypeBinder playerTwoTypeBinder = new PlayerTypeBinder
+                {
+                    PlayerType = playerType,
+                    Group = guidPlayerTwo,
+                    IsChecked = playerType == PlayerType.ComputerPlayer ? true : false,
+                    Description = EnumHelper.GetEnumDescription(playerType)
+                };
                 PlayerTwoPlayerType.Add(playerTwoTypeBinder);
             }
         }

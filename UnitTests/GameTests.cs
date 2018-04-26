@@ -27,8 +27,10 @@ namespace UnitTests
         public void Game_GetGameWinner_WinnerIsReturnAccordingly(int numberOfTurns,int playerOneScore, int playerTwoScore,int numberOfPlayedTurns, int expectedWinner)
         {
             //ARRANGE
-            IGame game = new Game();
-            game.NumerberOfTurns = numberOfTurns;
+            IGame game = new Game
+            {
+                NumerberOfTurns = numberOfTurns
+            };
 
             //ACT
             var currentWinner = game.GetGameWinner(playerOneScore, playerTwoScore, numberOfPlayedTurns);

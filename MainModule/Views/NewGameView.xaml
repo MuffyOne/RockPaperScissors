@@ -53,8 +53,9 @@
         </ListView>
         <TextBlock Text="Player Name:" Grid.Column="3" Grid.Row="1" FontFamily="Segoe UI" FontSize="15" VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center"></TextBlock>
         <TextBox x:Name="PlayerTwoName" Grid.Row="1" Grid.Column="4" Text="{Binding PlayerTwoName}" Width="150" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBox>
-
-
-        <Button x:Name="NewGameButton" Grid.Row="3" Grid.Column="2" Command="{Binding StartNewGameCommand}" Content="Start!" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="15" Padding="5"></Button>
+        <Button x:Name="NewGameButton" Grid.Row="3" Grid.Column="2" 
+                Command="{Binding StartNewGameCommand}" Content="Start!" VerticalAlignment="Center" 
+                HorizontalAlignment="Center" Margin="15" Padding="5"
+                 MinWidth="65" MinHeight="30" Background="#96af83" FontWeight="Bold"/>
     </Grid>
 </UserControl>

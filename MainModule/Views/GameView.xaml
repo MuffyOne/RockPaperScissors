@@ -53,7 +53,9 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Button  Content="{Binding Path=Description}" Command="{Binding Path=DataContext.PlayerOneMakesChoiceCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType=ListView}}" CommandParameter="{Binding Path=RuleValue}" Margin="5" Background="Transparent" />
+                    <Button  MinWidth="65" MinHeight="30" Background="#96af83" Content="{Binding Path=Description}"
+                             Command="{Binding Path=DataContext.PlayerOneMakesChoiceCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType=ListView}}" 
+                             CommandParameter="{Binding Path=RuleValue}" Margin="5" FontWeight="Bold"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -70,7 +72,9 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Button  Content="{Binding Path=Description}" Command="{Binding Path=DataContext.PlayerTwoMakesChoiceCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType=ListView}}" CommandParameter="{Binding Path=RuleValue}" Margin="5" Background="Transparent" />
+                    <Button MinWidth="65" MinHeight="30" Background="#96af83" Content="{Binding Path=Description}" 
+                            Command="{Binding Path=DataContext.PlayerTwoMakesChoiceCommand, RelativeSource={RelativeSource AncestorLevel=1, AncestorType=ListView}}" 
+                            CommandParameter="{Binding Path=RuleValue}" Margin="5"  FontWeight="Bold" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
