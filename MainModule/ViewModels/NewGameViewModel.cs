@@ -66,9 +66,10 @@ namespace MainModule.ViewModels
         }
         #endregion
 
+        #region methods
         /*The filters to select which type of player you want is created dynamically starting from the Enum list describing the 
-         list of available player type, if you add a new type of player you don't have to update the view
-         */
+        list of available player type, if you add a new type of player you don't have to update the view
+        */
         private void InitializePlayersTypes()
         {
             Guid guidPlayerOne = Guid.NewGuid();
@@ -80,14 +81,14 @@ namespace MainModule.ViewModels
                 PlayerTypeBinder playerOneTypeBinder = new PlayerTypeBinder();
                 playerOneTypeBinder.PlayerType = playerType;
                 playerOneTypeBinder.Group = guidPlayerOne;
-                playerOneTypeBinder.IsChecked = false;
+               playerOneTypeBinder.IsChecked = playerType == PlayerType.HumanPlayer ? true : false;
                 playerOneTypeBinder.Description = EnumHelper.GetEnumDescription(playerType);
                 PlayerOnePlayerType.Add(playerOneTypeBinder);
 
                 PlayerTypeBinder playerTwoTypeBinder = new PlayerTypeBinder();
                 playerTwoTypeBinder.PlayerType = playerType;
                 playerTwoTypeBinder.Group = guidPlayerTwo;
-                playerTwoTypeBinder.IsChecked = false;
+                playerTwoTypeBinder.IsChecked = playerType == PlayerType.ComputerPlayer ? true : false;
                 playerTwoTypeBinder.Description = EnumHelper.GetEnumDescription(playerType);
                 PlayerTwoPlayerType.Add(playerTwoTypeBinder);
             }
@@ -131,6 +132,6 @@ namespace MainModule.ViewModels
             }
         }
 
-
+        #endregion
     }
 }

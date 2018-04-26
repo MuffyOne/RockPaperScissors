@@ -2,8 +2,7 @@
 {
     public interface IGame
     {
-        void ResetGame();
-        
+       
         IPlayer PlayerOne { get; set; }
 
         IPlayer PlayerTwo { get; set; }
@@ -12,7 +11,7 @@
 
         int NumerberOfTurns { get; set; }
 
-        int GetGameWinner(int playerOneScore, int playerTwoScore);
+        int GetGameWinner(int playerOneScore, int playerTwoScore, int numberOfPlayedTurns);
 
     }
 }

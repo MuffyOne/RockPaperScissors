@@ -45,7 +45,7 @@
                   Background="Transparent" BorderBrush="Transparent"
                   Visibility="{Binding PlayerOneHumanChoiceVisibility}"
                   HorizontalContentAlignment="Center"
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                  HorizontalAlignment="Center" VerticalAlignment="Stretch">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" Background="Transparent" />

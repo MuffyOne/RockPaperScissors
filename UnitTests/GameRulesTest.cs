@@ -10,7 +10,7 @@ namespace UnitTests
 {
     public class GameRulesTest
     {
-        [TestCase(1,1,0)]
+        [TestCase(1, 1, 0)]
         [TestCase(2, 2, 0)]
         [TestCase(3, 3, 0)]
         [TestCase(1, 2, 2)]
@@ -19,7 +19,7 @@ namespace UnitTests
         [TestCase(2, 3, 2)]
         [TestCase(3, 1, 2)]
         [TestCase(3, 2, 1)]
-        public void RockPaperScissorsRules_GetWinningMove_WinnerCorrect(int playerOneMove,int playerTwoMove, int expectedResult)
+        public void RockPaperScissorsRules_GetWinningMove_WinnerCorrect(int playerOneMove, int playerTwoMove, int expectedResult)
         {
             //ARRANGE
             RockPaperScissorsRules ruleSet = new RockPaperScissorsRules();
@@ -29,6 +29,21 @@ namespace UnitTests
 
             //ASSERT
             Assert.AreEqual(expectedResult, winningPlayer);
+        }
+
+        [TestCase(1, 2)]
+        [TestCase(2, 3)]
+        [TestCase(3, 1)]
+        public void RockPaperScissorsRules_GetNextWinningMove_WinnerCorrect(int lastMove, int expectedResult)
+        {
+            //ARRANGE
+            RockPaperScissorsRules ruleSet = new RockPaperScissorsRules();
+
+            //ACT
+            var winningMove = ruleSet.GetNextWinningMove(lastMove);
+
+            //ASSERT
+            Assert.AreEqual(expectedResult, winningMove);
         }
     }
 }

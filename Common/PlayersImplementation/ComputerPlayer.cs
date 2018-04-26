@@ -1,6 +1,5 @@
 ﻿using RockPaperScissors.Common.Enums;
 using RockPaperScissors.Common.Interfaces;
-using System;
 
 namespace RockPaperScissors.Common.PlayersImplementation
 {

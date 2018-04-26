@@ -69,8 +69,8 @@
     <Compile Include="Enums\PlayerType.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\RegionExtensions.cs" />
+    <Compile Include="Helpers\SimpleAsyncCommandWithParameter.cs" />
     <Compile Include="Interfaces\IGame.cs" />
-    <Compile Include="Interfaces\IMove.cs" />
     <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IRules.cs" />
     <Compile Include="Models\Game.cs" />

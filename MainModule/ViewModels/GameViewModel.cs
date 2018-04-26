@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using Prism.Mvvm;
 using Prism.Regions;
+using RockPaperScissors.Common.Helpers;
 using RockPaperScissors.Common.Interfaces;
 using RockPaperScissors.Common.Models;
 using System.Collections.ObjectModel;
@@ -282,7 +283,7 @@ namespace MainModule.ViewModels
             {
                 return;
             }
-            var winner = Game.GetGameWinner(PlayerOneScore, PlayerTwoScore);
+            var winner = Game.GetGameWinner(PlayerOneScore, PlayerTwoScore, CurrentTurn);
             if (winner == -1)
             {
                 await NextRound();
@@ -332,8 +333,6 @@ namespace MainModule.ViewModels
             {
                 case 0:
                     {
-                        PlayerOneScore++;
-                        PlayerTwoScore++;
                         InGameMessage = "DRAW";
                         break;
                     }

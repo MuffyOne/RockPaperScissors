@@ -13,7 +13,6 @@ namespace RockPaperScissors.Common.Rules
             _random = new Random();
         }
 
-
         public List<MoveModel> MoveList
         {
             get

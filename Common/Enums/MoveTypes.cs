@@ -1,5 +1,4 @@
-﻿using RockPaperScissors.Common.Interfaces;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace RockPaperScissors.Common.Enums
 {

@@ -1,5 +1,6 @@
 ﻿using RockPaperScissors.Common.Enums;
 using RockPaperScissors.Common.Interfaces;
+using System;
 
 namespace RockPaperScissors.Common.PlayersImplementation
 {
@@ -12,7 +13,7 @@ namespace RockPaperScissors.Common.PlayersImplementation
        
         public int GetNextMove(IRules ruleSet)
         {
-            return 1;
+            throw new Exception("UI is responsible to get next move for this type of player");
         }
     }
 }
