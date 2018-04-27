@@ -133,15 +133,10 @@ namespace MainModule.ViewModels
 
         private void PreExecute()
         {
-            // IsBusy = true;
         }
 
         private void PostExecute(Task task)
         {
-            // if (task.IsFaulted)
-            // {
-            // }
-            // IsBusy = false;
         }
 
         private async Task PlayerOneMakesChoice(object arg)

@@ -114,6 +114,10 @@ namespace MainModule.ViewModels
             IPlayer playerTwo = CreatePlayer(binderPlTwo.PlayerType);
             playerTwo.PlayerName = PlayerTwoName;
             playerTwo.PlayerType = binderPlTwo.PlayerType;
+
+            //TODO: Bind this to a property of the options to make the number of turns selectable.
+            //PS: changing this value manualy already works
+
             _game.NumerberOfTurns = 3;
             _game.PlayerOne = playerOne;
             _game.PlayerTwo = playerTwo;
