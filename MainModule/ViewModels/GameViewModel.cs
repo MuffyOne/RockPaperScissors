@@ -4,6 +4,7 @@ using Prism.Regions;
 using RockPaperScissors.Common.Helpers;
 using RockPaperScissors.Common.Interfaces;
 using RockPaperScissors.Common.Models;
+using RockPaperScissors.Common.Resources;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -294,12 +295,12 @@ namespace MainModule.ViewModels
             {
                 if (winner == 0)
                 {
-                    InGameMessage = "Game drawn";
+                    InGameMessage = Resource.GameDrawn;
                 }
                 else
                 {
                     string playerName = winner == 1 ? PlayerOne.PlayerName : PlayerTwo.PlayerName;
-                    InGameMessage = string.Format("{0} won the game!", playerName);
+                    InGameMessage = string.Format("{0} {1}", playerName, Resource.GameWon);
                 }
             }
         }
@@ -309,7 +310,7 @@ namespace MainModule.ViewModels
             int i = 3;
             while (i != 0)
             {
-                CountDownMessage = "Next turn in " + i;
+                CountDownMessage = string.Format("{0} {1}", Resource.NextTurn,i);
                 try
                 {
                     await Task.Delay(1000, _cancellationToken);
@@ -351,19 +352,19 @@ namespace MainModule.ViewModels
             {
                 case 0:
                     {
-                        InGameMessage = "DRAW";
+                        InGameMessage = Resource.Draw;
                         break;
                     }
                 case 1:
                     {
                         PlayerOneScore++;
-                        InGameMessage = string.Format("{0} won the turn", PlayerOne.PlayerName);
+                        InGameMessage = string.Format("{0} {1}", PlayerOne.PlayerName, Resource.TurnWon);
                         break;
                     }
                 case 2:
                     {
                         PlayerTwoScore++;
-                        InGameMessage = string.Format("{0} won the turn", PlayerTwo.PlayerName);
+                        InGameMessage = string.Format("{0} {1}", PlayerTwo.PlayerName, Resource.TurnWon);
                         break;
                     }
                 default:

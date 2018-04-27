@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:resources="clr-namespace:RockPaperScissors.Common.Resources;assembly=RockPaperScissors.Common"
              xmlns:local="clr-namespace:MainModule.Views"
-             mc:Ignorable="d" 
+                         mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="1000">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,10 +21,10 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
-          <Run FontSize="20" Text="Best of "/>
+          <Run FontSize="20" Text="{x:Static resources:Resource.BestOf}"/>
           <Run FontSize="20" Text="{Binding Path=NumerberOfTurns, Mode=TwoWay}"/>
-          <Run FontSize="20" Text=" Current turn: "/>
-          <Run FontSize="20"  Text="{Binding CurrentTurn, Mode=TwoWay}" />  
+          <Run FontSize="20" Text="{x:Static resources:Resource.CurrentTurn}"/>
+          <Run FontSize="20"  Text="{Binding CurrentTurn, Mode=TwoWay}" />
         </TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="1"  FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
           <Run Text="{Binding PlayerOne.PlayerName, Mode=TwoWay}"/>
