@@ -21,7 +21,7 @@ namespace RockPaperScissors.Common.Rules
                 {
                 new MoveModel { Description = "Rock", RuleValue = 1 },
                 new MoveModel { Description = "Paper", RuleValue = 2 },
-                new MoveModel { Description = "Scissor", RuleValue = 3 }
+                new MoveModel { Description = "Scissors", RuleValue = 3 }
                 };
             }
         }

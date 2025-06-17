@@ -9,7 +9,7 @@
 
         IRules Rules { get; set; }
 
-        int NumerberOfTurns { get; set; }
+        int NumberOfTurns { get; set; }
 
         int GetGameWinner(int playerOneScore, int playerTwoScore, int numberOfPlayedTurns);
 

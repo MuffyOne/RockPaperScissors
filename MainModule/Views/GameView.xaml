@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" FontFamily="Segoe UI" FontSize="20" VerticalAlignment="Stretch" Margin="20" HorizontalAlignment="Center">
           <Run FontSize="20" Text="{x:Static resources:Resource.BestOf}"/>
-          <Run FontSize="20" Text="{Binding Path=NumerberOfTurns, Mode=TwoWay}"/>
+          <Run FontSize="20" Text="{Binding Path=NumberOfTurns, Mode=TwoWay}"/>
           <Run FontSize="20" Text="{x:Static resources:Resource.CurrentTurn}"/>
           <Run FontSize="20"  Text="{Binding CurrentTurn, Mode=TwoWay}" />
         </TextBlock>

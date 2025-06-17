@@ -33,7 +33,7 @@ namespace MainModule.ViewModels
         private Visibility _playerTwoHumanChoiceVisibility;
         private int _playerOneScore;
         private int _playerTwoScore;
-        private string _numerberOfTurns;
+        private string _numberOfTurns;
         private CancellationTokenSource _tokenSource;
         private CancellationToken _cancellationToken;
         #endregion
@@ -119,10 +119,10 @@ namespace MainModule.ViewModels
             set { SetProperty(ref _moves, value); }
         }
 
-        public string NumerberOfTurns
+        public string NumberOfTurns
         {
-            get { return _numerberOfTurns; }
-            set { SetProperty(ref _numerberOfTurns, value); }
+            get { return _numberOfTurns; }
+            set { SetProperty(ref _numberOfTurns, value); }
         }
 
         #endregion
@@ -226,7 +226,7 @@ namespace MainModule.ViewModels
             PlayerOne = Game.PlayerOne;
             PlayerTwo = Game.PlayerTwo;
             Moves = new ObservableCollection<MoveModel>(Game.Rules.MoveList);
-            NumerberOfTurns = Game.NumerberOfTurns.ToString();
+            NumberOfTurns = Game.NumberOfTurns.ToString();
             _tokenSource = new CancellationTokenSource();
 
             _cancellationToken = _tokenSource.Token;
