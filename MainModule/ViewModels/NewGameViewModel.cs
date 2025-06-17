@@ -118,7 +118,7 @@ namespace MainModule.ViewModels
             //TODO: Bind this to a property of the options to make the number of turns selectable.
             //PS: changing this value manualy already works
 
-            _game.NumerberOfTurns = 3;
+            _game.NumberOfTurns = 3;
             _game.PlayerOne = playerOne;
             _game.PlayerTwo = playerTwo;
             _game.Rules = new RockPaperScissorsRules();

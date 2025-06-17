@@ -29,7 +29,7 @@ namespace UnitTests
             //ARRANGE
             IGame game = new Game
             {
-                NumerberOfTurns = numberOfTurns
+                NumberOfTurns = numberOfTurns
             };
 
             //ACT

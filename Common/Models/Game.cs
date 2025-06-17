@@ -5,7 +5,7 @@ namespace RockPaperScissors.Models
     public class Game : IGame
     {
         #region properties
-        public int NumerberOfTurns { get; set; }
+        public int NumberOfTurns { get; set; }
         public IPlayer PlayerOne { get; set; }
         public IPlayer PlayerTwo { get; set; }
         public IRules Rules { get; set; }
@@ -20,7 +20,7 @@ namespace RockPaperScissors.Models
         */
         public int GetGameWinner(int playerOneScore, int playerTwoScore, int numberOfPlayedTurns)
         {
-            if (numberOfPlayedTurns == NumerberOfTurns)
+            if (numberOfPlayedTurns == NumberOfTurns)
             {
                 if (playerTwoScore == playerOneScore)
                 {
@@ -32,17 +32,17 @@ namespace RockPaperScissors.Models
                 }
                 return 1;
             }
-            else if(playerOneScore == playerTwoScore && numberOfPlayedTurns< NumerberOfTurns)
+            else if (playerOneScore == playerTwoScore && numberOfPlayedTurns < NumberOfTurns)
             {
                 return -1;
             }
             else
             {
-                if (playerOneScore > NumerberOfTurns / 2.0)
+                if (playerOneScore > NumberOfTurns / 2.0)
                 {
                     return 1;
                 }
-                else if (playerTwoScore > NumerberOfTurns / 2.0)
+                else if (playerTwoScore > NumberOfTurns / 2.0)
                 {
                     return 2;
                 }
